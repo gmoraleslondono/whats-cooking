@@ -22,9 +22,12 @@ export const Home = () => {
 
   const handleSuggestClick = async () => {
     try {
-      const response = await axios.get(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-      );
+      // const response = await axios.get(
+      //   "https://www.themealdb.com/api/json/v1/1/random.php"
+      // );
+
+      const response = await axios.get(`http://localhost:3000/api/suggestion`);
+
       const randomMeal = response.data.meals[0];
       navigate("/recipe", { state: { mealId: randomMeal.idMeal } });
     } catch (error) {
