@@ -8,12 +8,28 @@ export const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your authentication logic here
-    if (username === "user" && password === "password") {
+    try {
+      //Send a POST request to the backend with username and password
+      const response = await fetch("http://localhost:3000/auth/login",{
+        method: "POST",
+        headers: { "Content-Type": "application/json"},//Set content type to JSON
+        body: JSON.stringify({ username, password}), //Convert data to JSON
+      });
+
+      if (!response.ok) throw new Error("Invalid credentials");
+
+      const data = await response.json(); //Parse JSON response
+      localStorage.setItem("token", data.token); //Save the token in localStorage
       navigate("/home");
-    } else {
-      alert("Invalid credentials");
+     // if (username === "user" && password === "password") {
+     // navigate("/home");
+    //} else {
+    //  alert("Invalid credentials");
+    //}
+    } catch (error) {
+      alert("Invalid credentials")
     }
+    
   };
 
   return (
