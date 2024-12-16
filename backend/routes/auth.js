@@ -7,6 +7,7 @@ import pool from "../db.js"; // Database connection pool
 const router = express.Router();
 
 //Register
+
 router.post("/register", async (req,res) => {
     //extract username and password from request body
     const { username, password } = req.body; 
@@ -15,9 +16,9 @@ router.post("/register", async (req,res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         //Insert the user into the database
         await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [username, hashedPassword]);
-        res.status(201).json({ messge: "User registered successfully"});
+        res.status(201).json({ message: "User registered successfully"});
     } catch (error) {
-        res.status(500).json({ error: "Error registering user "}); 
+        res.status(500).json({ error: "Error registering user ", details: error.message}); 
     }
 });
 
@@ -30,7 +31,7 @@ router.post("/login", async (req,res) => {
         const result = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
         const user = result.rows[0];
         //If user not found or password does not match, send unauthorized response
-        if(!user || !(await bcrypt.compare(passowrd, user.password))) {
+        if(!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ error: "Invalid credentials"});
         }
 
