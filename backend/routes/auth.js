@@ -6,8 +6,18 @@ import pool from "../db.js"; // Database connection pool
 
 const router = express.Router();
 
-//Register
+//GET route to fetch all users(for checking purpose)
+router.get("/users", async(req,res) =>{
+    try {
+        const users = await pool.query("SELECT id, username FROM users");
+        res.json(users.rows);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message:"Server error", error: error.message});
+    }
+});
 
+//Register
 router.post("/register", async (req,res) => {
     //extract username and password from request body
     const { username, password } = req.body; 
