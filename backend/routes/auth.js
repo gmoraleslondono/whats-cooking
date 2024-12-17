@@ -6,21 +6,26 @@ import pool from "../db.js"; // Database connection pool
 
 const router = express.Router();
 
-//GET route to fetch all users(for checking purpose)
-router.get("/users", async(req,res) =>{
+//connection testing 
+router.get("/test-db", async (req, res) => {
     try {
-        const users = await pool.query("SELECT id, username FROM users");
-        res.json(users.rows);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ message:"Server error", error: error.message});
+      const result = await pool.query("SELECT * FROM users");
+      res.json(result.rows); // Returns all users (should be empty initially)
+    } catch (err) {
+      res.status(500).json({ error: "Database error", error: err.message });
     }
-});
+  });
+  
 
 //Register
 router.post("/register", async (req,res) => {
     //extract username and password from request body
     const { username, password } = req.body; 
+
+    if(!username || !password){
+        return res.status(400),json({ error:  "Username and password are required"})
+    }
+
     try {
         //Hash the password for secure storage
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -28,6 +33,7 @@ router.post("/register", async (req,res) => {
         await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [username, hashedPassword]);
         res.status(201).json({ message: "User registered successfully"});
     } catch (error) {
+        console.log(error.message);
         res.status(500).json({ error: "Error registering user ", details: error.message}); 
     }
 });
