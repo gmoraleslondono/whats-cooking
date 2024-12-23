@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import "./RecipeDetail.css"; // Import the CSS file
 
 interface Meal {
   idMeal: string;
@@ -36,11 +37,17 @@ export const RecipeDetail = () => {
   }
 
   return (
-    <div>
-      <h1>{meal.strMeal}</h1>
-      <button>Favorite</button>
-      <img src={meal.strMealThumb} alt={meal.strMeal} />
-      <p>{meal.strInstructions}</p>
+    <div className="recipe-detail">
+      <div className="image-column">
+        <img src={meal.strMealThumb} alt={meal.strMeal} />
+      </div>
+      <div className="content-column">
+        <div className="title">
+          <button>Favorite</button>
+          <h2>{meal.strMeal}</h2>
+        </div>
+        <p>{meal.strInstructions}</p>
+      </div>
     </div>
   );
 };
