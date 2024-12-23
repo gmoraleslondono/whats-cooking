@@ -1,7 +1,6 @@
 .recipe-detail {
   display: flex;
   gap: 30px;
-  margin: 0 10%;
 }
 
 .image-column {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Login.css";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -22,46 +23,59 @@ export const Login = () => {
       const data = await response.json(); //Parse JSON response
       localStorage.setItem("token", data.token); //Save the token in localStorage
       navigate("/home");
-     // if (username === "user" && password === "password") {
-     // navigate("/home");
-    //} else {
-    //  alert("Invalid credentials");
-    //}
+      // if (username === "user" && password === "password") {
+      // navigate("/home");
+      //} else {
+      //  alert("Invalid credentials");
+      //}
     } catch (error) {
-      alert("Invalid credentials")
+      alert("Invalid credentials");
     }
-    
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>username = "user" password = "password"</p>
-      {/*adding Register Link*/}
-      <p>Don't have an account? 
-        <Link to="/register">
-        <button>Register</button>
-        </Link>
-      </p>
+    <div className="login-page">
+      <div className="welcome-message">
+        <span className="text-big">Your easy cooking solution is here!</span>
+        <span className="text-small">
+          What’s Cooking? helps you find delicious recipes with the ingredients
+          you have. Reduce waste, save time, and enjoy personalized meal ideas.
+        </span>
+        <span className="text-small">
+          Log in now to discover exciting dishes and start cooking smarter
+          today!
+        </span>
+      </div>
+      <div className="login-form">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p>username = "user" password = "password"</p>
+        {/*adding Register Link*/}
+        <p>
+          Don't have an account?
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
