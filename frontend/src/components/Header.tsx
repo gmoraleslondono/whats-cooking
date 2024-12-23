@@ -12,7 +12,14 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">
+      <div
+        className="logo"
+        onClick={() => {
+          if (location.pathname !== "/") {
+            navigate("/home");
+          }
+        }}
+      >
         <img src="src/assets/icon-food.svg" alt="Logo" width={50} />
         <h2>What's Cooking?</h2>
       </div>
