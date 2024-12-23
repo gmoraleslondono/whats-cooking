@@ -8,6 +8,7 @@ interface Meal {
   strMeal: string;
   strInstructions: string;
   strMealThumb: string;
+  [key: string]: string; // To handle dynamic keys for ingredients and measurements
 }
 
 export const RecipeDetail = () => {
@@ -36,17 +37,34 @@ export const RecipeDetail = () => {
     return <p>No meal found.</p>;
   }
 
+  // Extract ingredients and measurements
+  const ingredients = [];
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+    if (ingredient) {
+      ingredients.push(`${measure} ${ingredient}`);
+    }
+  }
+
   return (
     <div className="recipe-detail">
-      <div className="image-column">
-        <img src={meal.strMealThumb} alt={meal.strMeal} />
-      </div>
       <div className="content-column">
         <div className="title">
           <button>Favorite</button>
           <h2>{meal.strMeal}</h2>
         </div>
+        <h3>Ingredients</h3>
+        <ul>
+          {ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <h3>Instructions</h3>
         <p>{meal.strInstructions}</p>
+      </div>
+      <div className="image-column">
+        <img src={meal.strMealThumb} alt={meal.strMeal} />
       </div>
     </div>
   );
