@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img src="/path/to/logo.png" alt="Logo" />
+        <img src="src/assets/icon-food.svg" alt="Logo" width={50} />
         <h2>What's Cooking?</h2>
       </div>
       {location.pathname !== "/" && (
