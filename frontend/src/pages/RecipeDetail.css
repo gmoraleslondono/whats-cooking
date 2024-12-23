@@ -1,0 +1,43 @@
+.recipe-detail {
+  display: flex;
+  gap: 30px;
+}
+
+.image-column {
+  flex: 0 0 35%;
+}
+
+.image-column img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.content-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-column ul {
+  padding-left: 2rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* media queries for responsive design */
+@media (max-width: 768px) {
+  .recipe-detail {
+    flex-direction: column;
+    margin: 0 2rem;
+  }
+
+  .image-column {
+    flex: 0 0 100%;
+  }
+}
