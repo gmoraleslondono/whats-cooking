@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import "./RecipeList.css";
 
 interface Meal {
   idMeal: string;
   strMeal: string;
+  strMealThumb: string;
 }
 
 export const RecipeList = () => {
@@ -25,7 +27,8 @@ export const RecipeList = () => {
                 key={meal.idMeal}
                 onClick={() => handleMealClick(meal.idMeal)}
               >
-                {meal.strMeal}
+                <img src={meal.strMealThumb} alt={meal.strMeal} />
+                <p>{meal.strMeal}</p>
               </li>
             ))}
           </ul>
