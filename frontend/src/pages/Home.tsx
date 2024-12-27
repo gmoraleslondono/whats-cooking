@@ -37,8 +37,11 @@ export const Home = () => {
 
   const handleSearchClick = async () => {
     try {
+      //const response = await axios.get(
+        //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+      //);
       const response = await axios.get(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+        `http://localhost:3000/api/ingredients?ingredient=${ingredient}`
       );
       const meals = response.data.meals;
       if (meals.length > 0) {
