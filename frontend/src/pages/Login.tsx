@@ -22,11 +22,6 @@ export const Login = () => {
       const data = await response.json(); //Parse JSON response
       localStorage.setItem("token", data.token); //Save the token in localStorage
       navigate("/home");
-     // if (username === "user" && password === "password") {
-     // navigate("/home");
-    //} else {
-    //  alert("Invalid credentials");
-    //}
     } catch (error) {
       alert("Invalid credentials")
     }
@@ -55,8 +50,7 @@ export const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-      <p>username = "user" password = "password"</p>
-      {/*adding Register Link*/}
+      {/*Register Link*/}
       <p>Don't have an account? 
         <Link to="/register">
         <button>Register</button>

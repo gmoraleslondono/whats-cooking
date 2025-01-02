@@ -25,9 +25,9 @@ export const Register = () => {
   
         if (!response.ok) {throw new Error("Error registering user");}
         
-        //Redirect to login page after successful registeration
-        alert("Rgistration successful! Please log in.");
-        navigate("/");
+        //direct to home page after successful registeration
+        alert("Rgistration successful!");
+        navigate("/home");
         
       } catch (error) {
         alert("Error registering")
