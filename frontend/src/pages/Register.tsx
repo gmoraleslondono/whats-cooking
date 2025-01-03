@@ -12,7 +12,13 @@ export const Register = () => {
     //Check if password match 
     if (password !== confirmPassword){
         alert("Password does not match");
-        return;
+        
+    //clear the form inputs to empty strings after error.
+       setUsername("");
+       setPassword("");
+       setConfirmPassword("");
+        
+       return;
     }
 
       try {
@@ -30,7 +36,12 @@ export const Register = () => {
         navigate("/home");
         
       } catch (error) {
-        alert("Error registering")
+        alert("Error registering");
+
+       //clear the form inputs to empty strings after error.
+       setUsername("");
+       setPassword("");
+       setConfirmPassword("");
       }
       
     };

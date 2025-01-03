@@ -66,8 +66,6 @@ export const Login = () => {
           </div>
           <button type="submit">Login</button>
         </form>
-        <p>username = "user" password = "password"</p>
-        {/*adding Register Link*/}
         <p>
           Don't have an account?
           <Link to="/register">
