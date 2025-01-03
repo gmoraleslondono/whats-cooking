@@ -16,7 +16,7 @@ const Header = () => {
         <img src="/path/to/logo.png" alt="Logo" />
         <h2>What's Cooking?</h2>
       </div>
-      {location.pathname !== "/" && (
+      {location.pathname !== "/"  && location.pathname !== "/register" && (
         <button className="logout-button" onClick={handleLogout}>
           Logout
         </button>

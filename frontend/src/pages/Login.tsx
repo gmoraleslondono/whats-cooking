@@ -23,9 +23,12 @@ export const Login = () => {
       localStorage.setItem("token", data.token); //Save the token in localStorage
       navigate("/home");
     } catch (error) {
-      alert("Invalid credentials")
+      alert("Invalid credentials");
+
+       //clear the form inputs to empty strings after error.
+       setUsername("");
+       setPassword("");
     }
-    
   };
 
   return (
