@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CategoryExplorer from "../components/CategoryExplorer";
 import Favorites from "../components/Favorites";
+import "./Home.css";
 
 interface Meal {
   idMeal: string;
@@ -38,7 +39,7 @@ export const Home = () => {
   const handleSearchClick = async () => {
     try {
       //const response = await axios.get(
-        //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+      //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
       //);
       const response = await axios.get(
         `http://localhost:3000/api/ingredients?ingredient=${ingredient}`
@@ -59,22 +60,33 @@ export const Home = () => {
   };
 
   return (
-    <div>
-      <h1>What's Cooking?</h1>
-      <button onClick={handleSuggestClick}>Suggest me something!</button>
-      <div className="section-ingredient">
-        <span>I have </span>
-        <input
-          type="text"
-          value={ingredient}
-          onChange={(e) => setIngredient(e.target.value)}
-          placeholder="Enter an ingredient"
-        />
-        <span> on my fridge!</span>
-        <button onClick={handleSearchClick}>Search</button>
+    <div className="home-page">
+      <h2>Hi you, What is cooking today?</h2>
+      <div className="home-content">
+        <div className="search-section">
+          <button className="btn-suggestion" onClick={handleSuggestClick}>
+            Suggest me something!
+            <img src="src/assets/chevron-right.svg" width={30} />
+          </button>
+          <div className="btn-ingredient">
+            <span>I have </span>
+            <input
+              type="text"
+              value={ingredient}
+              onChange={(e) => setIngredient(e.target.value)}
+              placeholder="Type ingredient"
+            />
+            <span> in my fridge!</span>
+            <button className="arrow-search" onClick={handleSearchClick}>
+              <img src="src/assets/chevron-right.svg" width={30} />
+            </button>
+          </div>
+          <CategoryExplorer setMeals={handleCategorySelect} />
+        </div>
+        <div className="favorites-section">
+          <Favorites favorites={favorites} removeFavorite={removeFavorite} />
+        </div>
       </div>
-      <CategoryExplorer setMeals={handleCategorySelect} />
-      <Favorites favorites={favorites} removeFavorite={removeFavorite} />
     </div>
   );
 };
