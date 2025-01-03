@@ -32,7 +32,7 @@ export const Register = () => {
         if (!response.ok) {throw new Error("Error registering user");}
         
         //direct to home page after successful registeration
-        alert("Rgistration successful!");
+        alert("Registration successful!");
         navigate("/home");
         
       } catch (error) {
