@@ -39,7 +39,7 @@ export const Home = () => {
   const handleSearchClick = async () => {
     try {
       //const response = await axios.get(
-        //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+      //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
       //);
       const response = await axios.get(
         `http://localhost:3000/api/ingredients?ingredient=${ingredient}`
@@ -76,7 +76,7 @@ export const Home = () => {
               onChange={(e) => setIngredient(e.target.value)}
               placeholder="Type ingredient"
             />
-            <span> on my fridge!</span>
+            <span> in my fridge!</span>
             <button className="arrow-search" onClick={handleSearchClick}>
               <img src="src/assets/chevron-right.svg" width={30} />
             </button>
