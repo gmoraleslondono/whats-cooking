@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CategoryExplorer from "../components/CategoryExplorer";
 import Favorites from "../components/Favorites";
-import "./Home.css";
+import { RecipeList } from "./RecipeList"; // Import RecipeList
 
 interface Meal {
   idMeal: string;
@@ -15,6 +15,53 @@ export const Home = () => {
   const [favorites, setFavorites] = useState<Meal[]>([]);
   const [ingredient, setIngredient] = useState("");
   const navigate = useNavigate();
+
+  // Fetch favorites from the backend when the component mounts
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      const userId = 1; // Replace with logic to get the actual user's ID
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/favorites/${userId}`
+        );
+        console.log("Fetched Favorites:", response.data);
+        setFavorites(response.data);
+      } catch (error) {
+        console.error("Error fetching favorites:", error);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
+
+  // Function to add a favorite meal
+  const addFavorite = async (meal: Meal) => {
+    const userId = 1; // Replace with logic to get the actual user's ID
+    try {
+      await axios.post("http://localhost:3000/api/favorites", {
+        userId,
+        mealId: meal.idMeal,
+        mealName: meal.strMeal,
+      });
+      setFavorites((prevFavorites) => [...prevFavorites, meal]);
+      alert("Meal added to favorites!");
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+    }
+  };
+
+  // Function to remove a favorite meal
+  const removeFavorite = async (mealId: string) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/favorites/${mealId}`);
+      setFavorites((prevFavorites) =>
+        prevFavorites.filter((meal) => meal.idMeal !== mealId)
+      );
+      alert("Meal removed from favorites!");
+    } catch (error) {
+      console.error("Error removing from favorites:", error);
+    }
+  };
 
   const handleCategorySelect = (selectedMeals: Meal[]) => {
     setMeals(selectedMeals);
@@ -38,9 +85,6 @@ export const Home = () => {
 
   const handleSearchClick = async () => {
     try {
-      //const response = await axios.get(
-      //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-      //);
       const response = await axios.get(
         `http://localhost:3000/api/ingredients?ingredient=${ingredient}`
       );
@@ -53,10 +97,6 @@ export const Home = () => {
     } catch (error) {
       console.error("Error fetching meals:", error);
     }
-  };
-
-  const removeFavorite = (mealId: string) => {
-    setFavorites(favorites.filter((meal) => meal.idMeal !== mealId));
   };
 
   return (

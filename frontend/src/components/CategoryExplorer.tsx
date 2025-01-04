@@ -23,8 +23,7 @@ const CategoryExplorer = ({ setMeals }: CategoryExplorerProps) => {
   const handleCategoryClick = async (category: string) => {
     try {
       const response = await axios.get(
-        
-    `http://localhost:3000/api/categories?category=${category}`
+        `http://localhost:3000/api/categories?category=${category}`
       );
       setMeals(response.data.meals);
     } catch (error) {
@@ -34,14 +33,12 @@ const CategoryExplorer = ({ setMeals }: CategoryExplorerProps) => {
 
   return (
     <div>
-      <h3>Explore by Categories</h3>
-      <div className="category-buttons">
-        {categories.map((category) => (
-          <button key={category} onClick={() => handleCategoryClick(category)}>
-            {category}
-          </button>
-        ))}
-      </div>
+      <h2>Explore by Categories</h2>
+      {categories.map((category) => (
+        <button key={category} onClick={() => handleCategoryClick(category)}>
+          {category}
+        </button>
+      ))}
     </div>
   );
 };

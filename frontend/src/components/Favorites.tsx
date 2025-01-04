@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import "./Favorites.css";
 
-interface Meal {
-  idMeal: string;
-  strMeal: string;
+interface FavoriteMeal {
+  id: number; // The unique ID for the favorite entry
+  user_id: number; // The user ID
+  meal_id: string; // The ID of the meal
+  meal_name: string; // The name of the meal
 }
 
 interface FavoritesProps {
-  favorites: Meal[];
+  favorites: FavoriteMeal[]; // Update the type to reflect the new structure
   removeFavorite: (mealId: string) => void;
 }
 
@@ -24,14 +26,14 @@ const Favorites = ({ favorites, removeFavorite }: FavoritesProps) => {
       {favorites.length > 0 ? (
         <ul className="favorites-list">
           {favorites.map((meal) => (
-            <li key={meal.idMeal} className="favorite-item">
+            <li key={meal.meal_id} className="favorite-item">
               <p
                 className="favorite-title"
-                onClick={() => handleMealClick(meal.idMeal)}
+                onClick={() => handleMealClick(meal.meal_id)}
               >
-                {meal.strMeal}
+                {meal.meal_name}
               </p>
-              <button onClick={() => removeFavorite(meal.idMeal)}>
+              <button onClick={() => removeFavorite(meal.meal_id)}>
                 Remove
               </button>
             </li>
