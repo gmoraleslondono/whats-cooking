@@ -23,7 +23,8 @@ const CategoryExplorer = ({ setMeals }: CategoryExplorerProps) => {
   const handleCategoryClick = async (category: string) => {
     try {
       const response = await axios.get(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
+        
+    `http://localhost:3000/api/categories?category=${category}`
       );
       setMeals(response.data.meals);
     } catch (error) {
