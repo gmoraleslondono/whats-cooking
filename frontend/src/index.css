@@ -22,13 +22,25 @@ a {
 
 button {
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid white;
   background-color: #646cff;
   color: white;
   cursor: pointer;
   border-radius: 4px;
 }
 
-button:hover {
+button:hover:not(.no-hover) {
+  border: 1px solid #535bf2;
+  background-color: white;
+  color: #535bf2;
+}
+
+button:active {
+  border: 1px solid #535bf2;
   background-color: #535bf2;
+  color: white;
+}
+
+button.no-hover:hover {
+  border: 1px dotted white;
 }

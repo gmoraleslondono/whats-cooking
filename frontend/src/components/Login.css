@@ -1,0 +1,36 @@
+.login-form {
+  border: 2px solid #646cff;
+  padding: 3rem;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.login-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.form input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.btn-login {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.link-register {
+  margin-left: 5px;
+}

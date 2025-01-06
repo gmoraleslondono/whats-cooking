@@ -1,0 +1,43 @@
+.register-form {
+  border: 2px solid #646cff;
+  padding: 2rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.register-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+form input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.btn-register {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* media queries for responsive design */
+@media (max-width: 768px) {
+  .register-form {
+    padding: 2rem 1rem;
+  }
+
+  form input {
+    max-width: 120px;
+  }
+}
