@@ -26,7 +26,7 @@ router.get("/:userId", async (req, res) => {
 });
 
 // Remove a favorite meal
-router.delete("/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     const id = req.params.id;
     try {
         await pool.query("DELETE FROM favorites WHERE meal_id = $1", [id]);

@@ -51,18 +51,6 @@ export const Home = () => {
     fetchFavorites();
   }, []);
 
-  const removeFavorite = async () => {
-    try {
-      await axios.delete(`http://localhost:3000/api/favorites/${mealId}`);
-      setFavorites((prevFavorites) =>
-        prevFavorites.filter((meal) => meal.idMeal !== mealId)
-      );
-      alert("Meal removed from favorites!");
-    } catch (error) {
-      console.error("Error fetching random meal:", error);
-    }
-  };
-
   const handleCategorySelect = (selectedMeals: Meal[]) => {
     setMeals(selectedMeals);
     navigate("/recipe-list", { state: { meals: selectedMeals } });
@@ -96,6 +84,32 @@ export const Home = () => {
       }
     } catch (error) {
       console.error("Error fetching meals:", error);
+    }
+  };
+
+  const removeFavorite = async (meal_id: string) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const response = await axios.delete(
+          `http://localhost:3000/api/favorites/delete/${meal_id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setFavorites((prevFavorites) =>
+            prevFavorites.filter((meal) => meal.idMeal !== meal_id)
+          );
+        } else {
+          console.error("Error removing favorite:", response.data.error);
+        }
+      }
+    } catch (error) {
+      console.error("Error removing favorite:", error);
     }
   };
 
