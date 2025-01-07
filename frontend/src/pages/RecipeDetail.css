@@ -28,13 +28,19 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* media queries for responsive design */
 @media (max-width: 768px) {
   .recipe-detail {
-    flex-direction: column;
+    flex-direction: column-reverse;
     margin: 0 2rem;
+  }
+
+  .title h2 {
+    font-size: 1.2rem;
   }
 
   .image-column {

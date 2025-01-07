@@ -61,13 +61,18 @@ export const Home = () => {
 
   return (
     <div className="home-page">
-      <h2>Hi you, What is cooking today?</h2>
+      <h2>Hi you, What's cooking today?</h2>
       <div className="home-content">
         <div className="search-section">
-          <button className="btn-suggestion" onClick={handleSuggestClick}>
-            Suggest me something!
-            <img src="src/assets/chevron-right.svg" width={30} />
-          </button>
+          <div className="btn-suggestion">
+            <span>Suggest me something!</span>
+            <button
+              className="arrow-search no-hover"
+              onClick={handleSuggestClick}
+            >
+              <img src="src/assets/chevron-right.svg" width={30} />
+            </button>
+          </div>
           <div className="btn-ingredient">
             <span>I have </span>
             <input
@@ -77,7 +82,10 @@ export const Home = () => {
               placeholder="Type ingredient"
             />
             <span> in my fridge!</span>
-            <button className="arrow-search" onClick={handleSearchClick}>
+            <button
+              className="arrow-search no-hover"
+              onClick={handleSearchClick}
+            >
               <img src="src/assets/chevron-right.svg" width={30} />
             </button>
           </div>
