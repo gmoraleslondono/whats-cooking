@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+// Home.tsx
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CategoryExplorer from "../components/CategoryExplorer";
 import Favorites from "../components/Favorites";
-import { RecipeList } from "./RecipeList"; // Import RecipeList
+import "./Home.css";
 
 interface Meal {
   idMeal: string;
@@ -16,10 +17,8 @@ export const Home = () => {
   const [ingredient, setIngredient] = useState("");
   const navigate = useNavigate();
 
-  // Fetch favorites from the backend when the component mounts
   useEffect(() => {
     const fetchFavorites = async () => {
-      const userId = 1; // Replace with logic to get the actual user's ID
       try {
         const response = await axios.get(
           `http://localhost:3000/api/favorites/${userId}`
@@ -34,24 +33,7 @@ export const Home = () => {
     fetchFavorites();
   }, []);
 
-  // Function to add a favorite meal
-  const addFavorite = async (meal: Meal) => {
-    const userId = 1; // Replace with logic to get the actual user's ID
-    try {
-      await axios.post("http://localhost:3000/api/favorites", {
-        userId,
-        mealId: meal.idMeal,
-        mealName: meal.strMeal,
-      });
-      setFavorites((prevFavorites) => [...prevFavorites, meal]);
-      alert("Meal added to favorites!");
-    } catch (error) {
-      console.error("Error adding to favorites:", error);
-    }
-  };
-
-  // Function to remove a favorite meal
-  const removeFavorite = async (mealId: string) => {
+  const removeFavorite = async () => {
     try {
       await axios.delete(`http://localhost:3000/api/favorites/${mealId}`);
       setFavorites((prevFavorites) =>
@@ -59,7 +41,7 @@ export const Home = () => {
       );
       alert("Meal removed from favorites!");
     } catch (error) {
-      console.error("Error removing from favorites:", error);
+      console.error("Error fetching random meal:", error);
     }
   };
 

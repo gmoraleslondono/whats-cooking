@@ -33,12 +33,14 @@ const CategoryExplorer = ({ setMeals }: CategoryExplorerProps) => {
 
   return (
     <div>
-      <h2>Explore by Categories</h2>
-      {categories.map((category) => (
-        <button key={category} onClick={() => handleCategoryClick(category)}>
-          {category}
-        </button>
-      ))}
+      <h3>Explore by Categories</h3>
+      <div className="category-buttons">
+        {categories.map((category) => (
+          <button key={category} onClick={() => handleCategoryClick(category)}>
+            {category}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

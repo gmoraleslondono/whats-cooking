@@ -1,53 +1,41 @@
-import { useLocation } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./RecipeList.css";
 
 interface Meal {
   idMeal: string;
   strMeal: string;
+  strMealThumb: string;
 }
 
-interface RecipeListProps {
-  addFavorite: (meal: Meal) => void; // Accept addFavorite as a prop
-}
-
-export const RecipeList: React.FC<RecipeListProps> = ({ addFavorite }) => {
+export const RecipeList = () => {
   const location = useLocation();
-  const category = location.state?.category; // Get the category from state
-  const [meals, setMeals] = useState<Meal[]>([]);
+  const navigate = useNavigate();
+  const meals = location.state?.meals || [];
 
-  useEffect(() => {
-    const fetchMealsByCategory = async () => {
-      if (category) {
-        try {
-          const response = await axios.get(
-            `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
-          );
-          setMeals(response.data.meals || []); // Ensure meals is an array
-        } catch (error) {
-          console.error("Error fetching meals:", error);
-        }
-      }
-    };
-
-    fetchMealsByCategory();
-  }, [category]); // Depend on category
+  const handleMealClick = (mealId: string) => {
+    navigate("/recipe", { state: { mealId } });
+  };
 
   return (
     <div>
-      <h1>{category} Meals</h1>
-      {meals.length > 0 ? (
-        <ul>
-          {meals.map((meal) => (
-            <li key={meal.idMeal}>
-              {meal.strMeal}
-              <button onClick={() => addFavorite(meal)}>Add to Favorites</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No meals found in this category.</p>
-      )}
+      <h1>Recipe List</h1>
+      <div className="category-meal-list">
+        {meals.length > 0 ? (
+          <ul>
+            {meals.map((meal: Meal) => (
+              <li
+                key={meal.idMeal}
+                onClick={() => handleMealClick(meal.idMeal)}
+              >
+                <img src={meal.strMealThumb} alt={meal.strMeal} />
+                <p>{meal.strMeal}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No meals found.</p>
+        )}
+      </div>
     </div>
   );
 };

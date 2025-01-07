@@ -29,7 +29,7 @@ router.get("/:userId", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        await pool.query("DELETE FROM favorites WHERE id = $1", [id]);
+        await pool.query("DELETE FROM favorites WHERE meal_id = $1", [id]);
         res.status(200).json({ message: "Favorite removed successfully" });
     } catch (error) {
         res.status(500).json({ error: "Error removing favorite" });
