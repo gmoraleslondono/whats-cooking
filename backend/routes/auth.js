@@ -102,7 +102,6 @@ router.post("/register", async (req, res) => {
  *         description: Server error.
  */
 
-
 //Login : Authenticate the user
 router.post("/login", async (req, res) => {
   //Extract username and password from request body

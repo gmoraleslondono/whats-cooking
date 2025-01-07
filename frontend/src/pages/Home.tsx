@@ -1,4 +1,5 @@
 // Home.tsx
+//import { decode } from 'jwt-decode'; // Import jwt-decode to decode the token
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,12 +7,17 @@ import CategoryExplorer from "../components/CategoryExplorer";
 import Favorites from "../components/Favorites";
 import "./Home.css";
 
+interface DecodedToken {
+  id: string;
+}
+
 interface Meal {
   idMeal: string;
   strMeal: string;
 }
 
 export const Home = () => {
+  const [userId, setUserId] = useState<string | null>(null);
   const [meals, setMeals] = useState<Meal[]>([]);
   const [favorites, setFavorites] = useState<Meal[]>([]);
   const [ingredient, setIngredient] = useState("");
@@ -20,13 +26,25 @@ export const Home = () => {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/favorites/${userId}`
-        );
-        console.log("Fetched Favorites:", response.data);
-        setFavorites(response.data);
+        const token = localStorage.getItem("token");
+        if (token) {
+          // const decoded: DecodedToken = jwt_decode(token);
+          // const userId = decoded.id;
+          // console.log({ userId });
+          const storedUserId = localStorage.getItem("id");
+          setUserId(storedUserId);
+          console.log(storedUserId);
+          console.log(userId);
+          const response = await axios.get(
+            `http://localhost:3000/api/favorites/${storedUserId}`
+          );
+          setFavorites(response.data);
+        }
       } catch (error) {
-        console.error("Error fetching favorites:", error);
+        console.error(
+          "Error fetching favorites:",
+          JSON.stringify(error, null, 2)
+        );
       }
     };
 
