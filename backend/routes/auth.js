@@ -5,7 +5,7 @@ import pool from "../db.js"; // Database connection pool
 
 const router = express.Router();
 
-//connection testing
+//connection testing-internal use only for debugging (no swagger doc)
 router.get("/test-db", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM users");
@@ -128,7 +128,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//Verify Token: check if the token is valid
+//Verify Token- testing, internal use only(no swagger doc)
 router.get("/verify", (req, res) => {
   //Extract the token from the request headers
   const token = req.headers["authorization"];
