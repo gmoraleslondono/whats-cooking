@@ -42,8 +42,8 @@ export const RecipeDetail = () => {
         return;
       }
 
-      const storedUserId = localStorage.getItem("id")
-      setUserId(storedUserId)
+      const storedUserId = localStorage.getItem("id");
+      setUserId(storedUserId);
 
       const response = await axios.post(
         "http://localhost:3000/api/favorites",
@@ -58,7 +58,7 @@ export const RecipeDetail = () => {
           },
         }
       );
- 
+
       if (response.status === 201) {
         alert("Favorite added successfully");
       }
@@ -86,7 +86,7 @@ export const RecipeDetail = () => {
     <div className="recipe-detail">
       <div className="content-column">
         <div className="title">
-        <button className="btn-add-favorite" onClick={handleAddFavorite}>
+          <button className="btn-add-favorite" onClick={handleAddFavorite}>
             Favorite
           </button>
           <h2>{meal.strMeal}</h2>

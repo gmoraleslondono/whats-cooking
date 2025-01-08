@@ -23,7 +23,7 @@ const Header = () => {
         <img src="src/assets/icon-food.svg" alt="Logo" width={50} />
         <h2>What's Cooking?</h2>
       </div>
-      {location.pathname !== "/"  && location.pathname !== "/register" && (
+      {location.pathname !== "/" && location.pathname !== "/register" && (
         <button className="logout-button" onClick={handleLogout}>
           Logout
         </button>

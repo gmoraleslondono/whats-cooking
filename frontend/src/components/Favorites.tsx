@@ -1,13 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Favorites.css";
 
-// interface FavoriteMeal {
-//   id: number; // The unique ID for the favorite entry
-//   user_id: number; // The user ID
-//   meal_id: string; // The ID of the meal
-//   meal_name: string; // The name of the meal
-// }
-
 interface Meal {
   meal_id: string;
   meal_name: string;
