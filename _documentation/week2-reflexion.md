@@ -9,11 +9,13 @@ I later saw a tutorial about using bcrypt for hashing passwords and I wanted to 
 ### Challenges
 I first had a challenge when I tried 'import pg' , I had errors but the terminal has an error message with a suggestion changing to 'import pkg' and it worked. This change did not cause an issue as when installing pg, pkg is installed as well. 
 It was a challenge matching the database details in .env file into the server. 
+When I tried to check if /login and /register worked on insomnia, I kept getting errors so I added a new route /test-db to get data that was added or if the data was being added after register. I kept getting an error about password not matching, I solved it by making a new server and adding the details correctly. I then got an error on insomnia saying that the host is not found. I kept retyping and changing the host name to match the name on the pgadmin, I changed it to localhost but nothing was working. I copy pasted the .env details from the main and insomnia worked (host name became “you_host_name”). 3 of the routes worked with tokens and hashed password. I could also see that the database in pgadmin got updated as well. 
 
 ### Learning insights
-
+-learned about brcypt and jwt. 
+-sometimes the local database does not get connect even if it worked before. (refreshing and retyping helped)
 ### Personal contributions
-
+-finished first draft for login and register.
 ## Suresh
 
 ### Completed tasks
