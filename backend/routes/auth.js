@@ -15,31 +15,6 @@ router.get("/test-db", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /auth/register:
- *   post:
- *     summary: Register a new user
- *     description: This endpoint registers a new user by accepting a username and password.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       201:
- *         description: User successfully registered.
- *       400:
- *         description: Bad Request - Missing fields or user already exists.
- *       500:
- *         description: Server error.
- */
 //Register
 router.post("/register", async (req, res) => {
   //extract username and password from request body
@@ -68,36 +43,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /auth/login:
- *  post:
- *    summary: Login a user
- *    description: This endpoint logs in a user by verifying their credentials and generating a JWT token.
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *              username:
- *                type: string
- *              password:
- *                type: string
- *    responses:
- *      200:
- *        description: Successful login
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                token:
- *                  type: string
- *      400:
- *        description: Invalid credentials
- */
 
 //Login : Authenticate the user
 router.post("/login", async (req, res) => {
