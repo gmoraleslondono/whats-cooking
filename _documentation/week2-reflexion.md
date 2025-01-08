@@ -3,7 +3,7 @@
 ## Megumi
 
 ### Completed tasks
-
+ 
 ### Challenges
 
 ### Learning insights
