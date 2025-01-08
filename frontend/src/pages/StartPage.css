@@ -1,13 +1,12 @@
-.login-page {
+.start-page {
   display: flex;
-  gap: 10%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
   min-height: 65vh;
 }
 
 .welcome-message {
-  width: 50%;
+  width: 55%;
 }
 
 .welcome-message span {
@@ -19,6 +18,7 @@
   font-size: 3rem;
   line-height: 1;
   font-weight: bold;
+  color: #535bf2;
 }
 
 .welcome-message .text-small {
@@ -27,12 +27,23 @@
 
 /* media queries for responsive design */
 @media (max-width: 768px) {
-  .login-page {
+  .start-page {
     flex-direction: column;
-    margin: 0 2rem;
+    margin: 0;
+    align-items: center;
   }
 
   .welcome-message {
     width: 100%;
+    text-align: justify;
+  }
+
+  .welcome-message .text-big {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .login-form {
+    padding: 2rem 1rem;
   }
 }

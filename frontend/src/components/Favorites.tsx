@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import "./Favorites.css";
+
 interface Meal {
   idMeal: string;
   strMeal: string;
@@ -9,14 +12,25 @@ interface FavoritesProps {
 }
 
 const Favorites = ({ favorites, removeFavorite }: FavoritesProps) => {
+  const navigate = useNavigate();
+
+  const handleMealClick = (mealId: string) => {
+    navigate("/recipe", { state: { mealId } });
+  };
+
   return (
-    <div>
+    <div className="favorites">
       <h2>Favorites</h2>
       {favorites.length > 0 ? (
-        <ul>
+        <ul className="favorites-list">
           {favorites.map((meal) => (
-            <li key={meal.idMeal}>
-              {meal.strMeal}
+            <li key={meal.idMeal} className="favorite-item">
+              <p
+                className="favorite-title"
+                onClick={() => handleMealClick(meal.idMeal)}
+              >
+                {meal.strMeal}
+              </p>
               <button onClick={() => removeFavorite(meal.idMeal)}>
                 Remove
               </button>
