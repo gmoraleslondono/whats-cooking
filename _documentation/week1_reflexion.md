@@ -8,9 +8,9 @@ We late decided to reduce the application, and we concluded with changing the ap
 ### Challenges
 The first challenge was agreeing with the application idea. The second challenge is to see how big the app can be and the realistic size and complexity of the task.
 ### Learning insights
-
+-working in groups and sharing ideas.
 ### Personal contributions
-
+-shared ideas and participated in meetings.
 ## Suresh
 
 ### Completed tasks
