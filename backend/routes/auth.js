@@ -15,7 +15,6 @@ router.get("/test-db", async (req, res) => {
   }
 });
 
-
 //Register
 router.post("/register", async (req, res) => {
   //extract username and password from request body
