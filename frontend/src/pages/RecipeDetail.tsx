@@ -15,6 +15,7 @@ export const RecipeDetail = () => {
   const location = useLocation();
   const mealId = location.state?.mealId;
   const [meal, setMeal] = useState<Meal | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMealDetails = async () => {
@@ -32,6 +33,40 @@ export const RecipeDetail = () => {
       fetchMealDetails();
     }
   }, [mealId]);
+
+  const handleAddFavorite = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please log in to add favorites");
+        return;
+      }
+
+      const storedUserId = localStorage.getItem("id");
+      setUserId(storedUserId);
+
+      const response = await axios.post(
+        "http://localhost:3000/api/favorites",
+        {
+          userId: storedUserId,
+          mealId: meal?.idMeal,
+          mealName: meal?.strMeal,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Favorite added successfully");
+      }
+    } catch (error) {
+      console.error("Error adding favorite:", error);
+      alert("Error adding favorite");
+    }
+  };
 
   if (!meal) {
     return <p>No meal found.</p>;
@@ -51,7 +86,9 @@ export const RecipeDetail = () => {
     <div className="recipe-detail">
       <div className="content-column">
         <div className="title">
-          <button>Favorite</button>
+          <button className="btn-add-favorite" onClick={handleAddFavorite}>
+            Favorite
+          </button>
           <h2>{meal.strMeal}</h2>
         </div>
         <h3>Ingredients</h3>

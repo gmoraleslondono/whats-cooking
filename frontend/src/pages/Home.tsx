@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CategoryExplorer from "../components/CategoryExplorer";
@@ -11,10 +11,36 @@ interface Meal {
 }
 
 export const Home = () => {
+  const [userId, setUserId] = useState<string | null>(null);
   const [meals, setMeals] = useState<Meal[]>([]);
   const [favorites, setFavorites] = useState<Meal[]>([]);
   const [ingredient, setIngredient] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
+
+  const fetchFavorites = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const storedUserId = localStorage.getItem("id");
+        setUserId(storedUserId);
+        console.log(storedUserId);
+        console.log(userId);
+        const response = await axios.get(
+          `http://localhost:3000/api/favorites/${storedUserId}`
+        );
+        setFavorites(response.data);
+      }
+    } catch (error) {
+      console.error(
+        "Error fetching favorites:",
+        JSON.stringify(error, null, 2)
+      );
+    }
+  };
 
   const handleCategorySelect = (selectedMeals: Meal[]) => {
     setMeals(selectedMeals);
@@ -38,9 +64,6 @@ export const Home = () => {
 
   const handleSearchClick = async () => {
     try {
-      //const response = await axios.get(
-      //`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-      //);
       const response = await axios.get(
         `http://localhost:3000/api/ingredients?ingredient=${ingredient}`
       );
@@ -55,8 +78,31 @@ export const Home = () => {
     }
   };
 
-  const removeFavorite = (mealId: string) => {
-    setFavorites(favorites.filter((meal) => meal.idMeal !== mealId));
+  const removeFavorite = async (meal_id: string) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const response = await axios.delete(
+          `http://localhost:3000/api/favorites/delete/${meal_id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setFavorites((prevFavorites) =>
+            prevFavorites.filter((meal) => meal.idMeal !== meal_id)
+          );
+          fetchFavorites();
+        } else {
+          console.error("Error removing favorite:", response.data.error);
+        }
+      }
+    } catch (error) {
+      console.error("Error removing favorite:", error);
+    }
   };
 
   return (

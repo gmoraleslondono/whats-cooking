@@ -21,7 +21,9 @@ export const Login = () => {
       if (!response.ok) throw new Error("Invalid credentials");
 
       const data = await response.json(); //Parse JSON response
+      console.log(data);
       localStorage.setItem("token", data.token); //Save the token in localStorage
+      localStorage.setItem("id", data.userid); //Save the user id in localStorage
       navigate("/home");
     } catch (error) {
       console.error("Loggin error:", error);

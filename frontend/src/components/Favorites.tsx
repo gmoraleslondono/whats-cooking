@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import "./Favorites.css";
 
 interface Meal {
-  idMeal: string;
-  strMeal: string;
+  meal_id: string;
+  meal_name: string;
 }
 
 interface FavoritesProps {
   favorites: Meal[];
-  removeFavorite: (mealId: string) => void;
+  removeFavorite: (meal_id: string) => void;
 }
 
 const Favorites = ({ favorites, removeFavorite }: FavoritesProps) => {
@@ -24,14 +24,14 @@ const Favorites = ({ favorites, removeFavorite }: FavoritesProps) => {
       {favorites.length > 0 ? (
         <ul className="favorites-list">
           {favorites.map((meal) => (
-            <li key={meal.idMeal} className="favorite-item">
+            <li key={meal.meal_id} className="favorite-item">
               <p
                 className="favorite-title"
-                onClick={() => handleMealClick(meal.idMeal)}
+                onClick={() => handleMealClick(meal.meal_id)}
               >
-                {meal.strMeal}
+                {meal.meal_name}
               </p>
-              <button onClick={() => removeFavorite(meal.idMeal)}>
+              <button onClick={() => removeFavorite(meal.meal_id)}>
                 Remove
               </button>
             </li>

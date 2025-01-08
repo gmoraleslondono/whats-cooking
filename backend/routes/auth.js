@@ -102,7 +102,6 @@ router.post("/register", async (req, res) => {
  *         description: Server error.
  */
 
-
 //Login : Authenticate the user
 router.post("/login", async (req, res) => {
   //Extract username and password from request body
@@ -126,7 +125,7 @@ router.post("/login", async (req, res) => {
         expiresIn: "1h", //Token expires in 1 hour
       }
     );
-    res.status(200).json({ token }); //Send the token to the user
+    res.status(200).json({ token: token, userid: user.id }); //Send the token and user id
   } catch (error) {
     res.status(500).json({ error: "Error logging in" });
   }
