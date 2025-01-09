@@ -35,8 +35,8 @@ export const Register = () => {
       }
 
       //direct to home page after successful registeration
-      alert("Registration successful!");
-      navigate("/home");
+      alert("Registration successful! Please login with your new credentials.");
+      navigate("/");
     } catch (error) {
       console.error("Error registering user:", error);
       alert("Error registering");
