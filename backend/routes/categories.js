@@ -11,7 +11,7 @@ const router = Router();
  *     parameters:
  *       - name: category
  *         in: query
- *         description: The category of meals to filter by (e.g., 'Seafood', 'Beef')
+ *         description: The category of meals to filter by different categories
  *         required: true
  *         schema:
  *           type: string
