@@ -127,7 +127,6 @@ export const Home = () => {
               onChange={(e) => setIngredient(e.target.value)}
               placeholder="Type ingredient"
             />
-            <span> in my fridge!</span>
             <button
               className="arrow-search no-hover"
               onClick={handleSearchClick}
