@@ -12,7 +12,7 @@ const router = Router();
           
             name: category
             in: query
-            description: The category of meals to filter by (e.g., 'Seafood', 'Beef')
+            description: The category of meals to filter by different categories
             required: true
             schema:
               type: string
@@ -30,15 +30,12 @@ const router = Router();
                       items:
                         type: object
                         properties:
- *                       strMeal:
- *                         type: string
- *                       strMealThumb:
- *                         type: string
- *                       idMeal:
- *                         type: string
+                          idMeal: type: string
+                          strMeal: type: string
+                          strMealThumb: type: string
+                        
           500:
-            description: Internal Server Error. Could occur if there is an issue with the external API or the server
-            
+            description: Internal Server Error
   
 */
  
