@@ -26,10 +26,16 @@ I contributed in the meetings and sharing ideas.
 ## Riad
 
 ### Completed tasks
+Set up backend functionality using Express and PostgreSQL.
+Implemented POST, GET, and DELETE routes for handling favorite meals.
+Documented endpoints with Swagger.
 
 ### Challenges
+Debugging SQL queries for secure and efficient data handling.
+Ensuring proper error handling for API endpoints.
 
 ### Learning insights
+Improved understanding of database operations and API design
 
 ### Personal contributions
 
