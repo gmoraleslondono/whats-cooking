@@ -3,7 +3,42 @@ import pool from "../db.js"; // Import your database connection
 
 const router = Router();
 
-// Add a favorite meal
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Favorite:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: integer
+ *           description: The ID of the user
+ *         mealId:
+ *           type: integer
+ *           description: The ID of the meal
+ *         mealName:
+ *           type: string
+ *           description: The name of the meal
+ */
+
+/**
+ * @swagger
+ * /favorites:
+ *   post:
+ *     summary: Add a favorite meal
+ *     tags: [Favorites]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Favorite'
+ *     responses:
+ *       201:
+ *         description: Favorite added successfully
+ *       500:
+ *         description: Error adding favorite
+ */
 router.post("/", async (req, res) => {
     const { userId, mealId, mealName } = req.body;
     try {
@@ -14,7 +49,25 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Get all favorites for a user
+/**
+ * @swagger
+ * /favorites/{userId}:
+ *   get:
+ *     summary: Get all favorites for a user
+ *     tags: [Favorites]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the user
+ *     responses:
+ *       200:
+ *         description: A list of favorite meals
+ *       500:
+ *         description: Error retrieving favorites
+ */
 router.get("/:userId", async (req, res) => {
     const userId = req.params.userId;
     try {
@@ -25,7 +78,25 @@ router.get("/:userId", async (req, res) => {
     }
 });
 
-// Remove a favorite meal
+/**
+ * @swagger
+ * /favorites/delete/{id}:
+ *   delete:
+ *     summary: Remove a favorite meal
+ *     tags: [Favorites]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the meal to remove
+ *     responses:
+ *       200:
+ *         description: Favorite removed successfully
+ *       500:
+ *         description: Error removing favorite
+ */
 router.delete("/delete/:id", async (req, res) => {
     const id = req.params.id;
     try {
@@ -35,6 +106,5 @@ router.delete("/delete/:id", async (req, res) => {
         res.status(500).json({ error: "Error removing favorite" });
     }
 });
-
 
 export default router;
