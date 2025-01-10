@@ -39,12 +39,22 @@ Merged all of my update branches.
 ## Riad
 
 ### Completed tasks
+Tested API calls for data consistency.
+Fixed bugs in the Favorites list update mechanism.
+Added error handling and visual feedback (loading states, alerts).
 
 ### Challenges
+Handling edge cases like empty favorites lists and failed API calls.
+Debugging asynchronous operations in React.
 
 ### Learning insights
+Gained experience in testing and debugging React applications.
+Improved ability to handle asynchronous operations effectively.
 
 ### Personal contributions
+Led the backend development and API documentation.
+Contributed to database setup and query optimization.
+Ensured smooth communication between the backend and frontend teams
 
 ## Gloria
 
