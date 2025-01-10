@@ -30,10 +30,14 @@ Completed first task by creating ingredients.js file.
 ## Riad
 
 ### Completed tasks
+Integrated backend API for fetching, adding, and removing favorite meals.
 
 ### Challenges
+Managing state updates dynamically after removing a favorite.
+Navigating between components with React Router.
 
 ### Learning insights
+Strengthened skills in state management and frontend-backend integration.
 
 ### Personal contributions
 
